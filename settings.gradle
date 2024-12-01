@@ -1,5 +1,4 @@
 rootProject.name = 'backend-challenge'
-include 'authorization-service'
 include 'transfer-service'
 include 'wallet-service'
 

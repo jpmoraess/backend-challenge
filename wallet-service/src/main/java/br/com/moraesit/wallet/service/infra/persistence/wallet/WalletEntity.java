@@ -3,7 +3,6 @@ package br.com.moraesit.wallet.service.infra.persistence.wallet;
 import br.com.moraesit.wallet.service.domain.entity.WalletType;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -15,23 +14,23 @@ public class WalletEntity {
     @Enumerated(EnumType.STRING)
     private WalletType type;
     private String fullName;
+    @Column(unique = true)
     private String document;
+    @Column(unique = true)
     private String email;
     private String password;
-    private BigDecimal balance;
 
     public WalletEntity() {
 
     }
 
-    public WalletEntity(UUID id, WalletType type, String fullName, String document, String email, String password, BigDecimal balance) {
+    public WalletEntity(UUID id, WalletType type, String fullName, String document, String email, String password) {
         this.id = id;
         this.type = type;
         this.fullName = fullName;
         this.document = document;
         this.email = email;
         this.password = password;
-        this.balance = balance;
     }
 
     private WalletEntity(Builder builder) {
@@ -41,7 +40,6 @@ public class WalletEntity {
         document = builder.document;
         email = builder.email;
         password = builder.password;
-        balance = builder.balance;
     }
 
     public static Builder builder() {
@@ -72,10 +70,6 @@ public class WalletEntity {
         return password;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,7 +92,6 @@ public class WalletEntity {
         private String document;
         private String email;
         private String password;
-        private BigDecimal balance;
 
         private Builder() {
         }
@@ -130,11 +123,6 @@ public class WalletEntity {
 
         public Builder password(String val) {
             password = val;
-            return this;
-        }
-
-        public Builder balance(BigDecimal val) {
-            balance = val;
             return this;
         }
 

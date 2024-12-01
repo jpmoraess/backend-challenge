@@ -2,7 +2,6 @@ package br.com.moraesit.wallet.service.domain.entity;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Wallet {
@@ -13,32 +12,26 @@ public class Wallet {
     private final String document;
     private final String email;
     private final String password;
-    private final BigDecimal balance;
 
-    private Wallet(UUID id, WalletType type, String fullName, String document,
-                   String email, String password, BigDecimal balance) {
+    private Wallet(UUID id, WalletType type, String fullName, String document, String email, String password) {
         this.id = id;
         this.type = type;
         this.fullName = fullName;
         this.document = document;
         this.email = email;
         this.password = password;
-        this.balance = balance;
     }
 
     public static Wallet create(WalletType type, String fullName, String document, String email, String password) {
         validate(type, fullName, document, email, password);
-        return new Wallet(UUID.randomUUID(), type, fullName, document, email, password, BigDecimal.ZERO);
+        return new Wallet(UUID.randomUUID(), type, fullName, document, email, password);
     }
 
-    public static Wallet restore(UUID id, WalletType type, String fullName, String document,
-                                 String email, String password, BigDecimal balance) {
+    public static Wallet restore(UUID id, WalletType type, String fullName, String document, String email, String password) {
         if (id == null)
             throw new IllegalArgumentException("id is required");
-        if (balance == null)
-            throw new IllegalArgumentException("balance is required");
         validate(type, fullName, document, email, password);
-        return new Wallet(id, type, fullName, document, email, password, balance);
+        return new Wallet(id, type, fullName, document, email, password);
     }
 
     private static void validate(WalletType type, String fullName, String document, String email, String password) {
@@ -76,9 +69,5 @@ public class Wallet {
 
     public String getPassword() {
         return password;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
     }
 }

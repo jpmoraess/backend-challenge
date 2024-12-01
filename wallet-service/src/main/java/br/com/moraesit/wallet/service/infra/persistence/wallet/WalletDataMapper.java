@@ -15,7 +15,6 @@ public class WalletDataMapper {
                 .document(wallet.getDocument())
                 .email(wallet.getEmail())
                 .password(wallet.getPassword())
-                .balance(wallet.getBalance())
                 .build();
     }
 
@@ -26,8 +25,7 @@ public class WalletDataMapper {
                 entity.getFullName(),
                 entity.getDocument(),
                 entity.getEmail(),
-                entity.getPassword(),
-                entity.getBalance()
+                entity.getPassword()
         );
     }
 }
